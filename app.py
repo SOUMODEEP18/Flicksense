@@ -10,8 +10,12 @@ app = Flask(__name__)
 CORS(app)
 
 # Load movie data
-movies = pickle.load(open("movie_list.pkl", 'rb'))
-similarity = pickle.load(open("similarity.pkl", 'rb'))
+with open("movie_list.pkl", "rb") as f:
+    movies = pickle.load(f)
+
+with open("similarity.pkl", "rb") as f:
+    similarity = pickle.load(f)
+
 
 # Fetch movie details (poster and overview) using TMDb API
 def fetch_movie_details(movie_id):
